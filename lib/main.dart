@@ -6,7 +6,6 @@ import 'core/Routing/app_router.dart';
 
 void main() {
   setupGetIt();
-
   runApp( PdaApp(
     appRouter: AppRouter(),
 

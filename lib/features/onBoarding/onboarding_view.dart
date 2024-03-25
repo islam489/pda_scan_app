@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pda_scan_app/features/Authintication/Login/Presentaion/screen/loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../core/DI/dependency_injection.dart';
 import '../../core/Theming/color.dart';
+import '../Authintication/Login/logic/cubit/login_cubit.dart';
 import 'onboarding_items.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -104,7 +107,13 @@ class _OnboardingViewState extends State<OnboardingView> {
             //After we press get started button this onboarding value become true
             // same key
             if(!mounted)return;
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(
+                  builder: (_) => BlocProvider(
+                    create: (context) => getIt<LoginCubit>(),
+                    child: const LoginScreen(),
+                  ),)
+            );
           },
           child: const Text("Get started",style: TextStyle(color: Colors.white),)),
     );

@@ -6,6 +6,11 @@ import 'package:pda_scan_app/core/Routing/routes.dart';
 import 'package:pda_scan_app/features/Splash/splash_screen.dart';
 import 'package:pda_scan_app/features/onBoarding/onboarding_view.dart';
 
+import '../../features/Authintication/Login/Presentaion/screen/loginScreen.dart';
+import '../../features/Authintication/Login/logic/cubit/login_cubit.dart';
+import '../../features/Home/presentation/screen/home_screen.dart';
+import '../DI/dependency_injection.dart';
+
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -22,7 +27,17 @@ class AppRouter {
           builder: (_) => const OnboardingView(),
         );
 
-
+      case Routes.loginScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: const LoginScreen(),
+          ),
+        );
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

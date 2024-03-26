@@ -1,8 +1,12 @@
 class ApiConstants {
+  // ---------------BaseUrl---------------//
   static const String apiBaseUrl = 'http://78.89.176.218:8000/api/';
+
   //-----------------Auth-----------------//
   static const String login = 'auth/login';
 
+  //-----------------Receipt--------------//
+  static const String getPurchaseOrderDetails = 'receipt/getPurchaseOrderDetails';
 }
 
 

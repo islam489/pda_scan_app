@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pda_scan_app/core/Routing/routes.dart';
+import 'package:pda_scan_app/features/Receipt/presentation/screen/receipt_screen.dart';
 import 'package:pda_scan_app/features/Splash/splash_screen.dart';
 import 'package:pda_scan_app/features/onBoarding/onboarding_view.dart';
 
@@ -22,6 +23,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const Splash_Screen(),
         );
+
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),
@@ -34,10 +36,18 @@ class AppRouter {
             child: const LoginScreen(),
           ),
         );
+
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
         );
+
+
+      case Routes.receiptScreen:
+        return MaterialPageRoute(
+          builder: (_) => const ReceiptScreen(),
+        );
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -14,7 +14,8 @@ final getIt = GetIt.instance;
 /// we put all our dependency injection in this function
 Future<void> setupGetIt() async {
   // Dio & ApiService
-  Dio dio = await DioFactory.getDio();
+  String? token;
+  Dio dio = await DioFactory.getDio(token!);
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
 
   // Login

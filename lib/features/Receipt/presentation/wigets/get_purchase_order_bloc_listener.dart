@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pda_scan_app/core/Helpers/extentions.dart';
+import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_details_response.dart';
+import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_cubit.dart';
+import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_state.dart';
 
-import '../../../../../core/Helpers/cache_helper.dart';
-import '../../../../../core/Networking/api_constants.dart';
-import '../../../../../core/Routing/routes.dart';
-import '../../../../../core/Theming/color.dart';
-import '../../../../../core/Theming/styles.dart';
-import '../../logic/cubit/login_cubit.dart';
-import '../../logic/cubit/login_state.dart';
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+import '../../../../core/Routing/routes.dart';
+import '../../../../core/Theming/color.dart';
+import '../../../../core/Theming/styles.dart';
 
+class GetPurchaseOrderListener extends StatelessWidget {
+
+  const GetPurchaseOrderListener({super.key,});
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<GetPurchaseOrderDetailsCubit, GetPurchaseOrderDetailsState>(
       listenWhen: (previous, current) =>
       current is Loading || current is Success || current is Error,
       listener: (context, state) {
@@ -29,10 +30,8 @@ class LoginBlocListener extends StatelessWidget {
               ),
             );
           },
-          success: (loginResponse) {
+          success: (getPurchaseOrderDetailsResponse) {
 
-            context.pop();
-            context.pushNamed(Routes.homeScreen);
           },
           error: (error) {
             context.pop();

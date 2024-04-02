@@ -4,18 +4,17 @@ import 'package:pda_scan_app/core/Networking/api_constants.dart';
 import '../../../../../core/Networking/api_error_handler.dart';
 import '../../../../../core/Networking/api_result.dart';
 import '../../../../../core/Networking/api_service.dart';
-import '../models/login_request_body.dart';
-import '../models/login_response.dart';
 
-class LoginRepo {
+import '../models/logout_response.dart';
+
+class LogoutRepo {
   final ApiService _apiService;
 
-  LoginRepo(this._apiService);
+  LogoutRepo(this._apiService);
 
-  Future<ApiResult<LoginResponse>> login(
-      LoginRequestBody loginRequestBody) async {
+  Future<ApiResult<LogoutResponse>> logout() async {
     try {
-      final response = await _apiService.login(loginRequestBody);
+      final response = await _apiService.logout();
 
       return ApiResult.success(response);
     } catch (error) {

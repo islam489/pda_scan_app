@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pda_scan_app/features/Authintication/Logout/data/models/logout_response.dart';
 import 'package:pda_scan_app/features/Receipt/data/models/get_purchase-order-details-request-body.dart';
 import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_details_response.dart';
 import 'package:retrofit/http.dart';
@@ -19,6 +20,9 @@ abstract class ApiService {
   Future<LoginResponse> login(
       @Body() LoginRequestBody loginRequestBody,
       );
+
+  @POST(ApiConstants.logout)
+  Future<LogoutResponse> logout();
 
 // --------------------------------- Receipt --------------------------------- //
 

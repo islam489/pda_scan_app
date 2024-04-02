@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pda_scan_app/core/Helpers/extentions.dart';
 
-import '../../../../../core/Helpers/cache_helper.dart';
-import '../../../../../core/Networking/api_constants.dart';
 import '../../../../../core/Routing/routes.dart';
 import '../../../../../core/Theming/color.dart';
 import '../../../../../core/Theming/styles.dart';
-import '../../logic/cubit/login_cubit.dart';
-import '../../logic/cubit/login_state.dart';
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+import '../../logic/cubit/logout_cubit.dart';
+import '../../logic/cubit/logout_state.dart';
+class LogoutBlocListener extends StatelessWidget {
+  const LogoutBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<LogoutCubit, LogoutState>(
       listenWhen: (previous, current) =>
       current is Loading || current is Success || current is Error,
       listener: (context, state) {
@@ -29,10 +27,10 @@ class LoginBlocListener extends StatelessWidget {
               ),
             );
           },
-          success: (loginResponse) {
+          success: (logoutResponse) {
 
             context.pop();
-            context.pushNamed(Routes.homeScreen);
+            context.pushReplacementNamed(Routes.loginScreen);
           },
           error: (error) {
             context.pop();
@@ -54,7 +52,7 @@ class LoginBlocListener extends StatelessWidget {
                       context.pop();
                     },
                     child: Text(
-                      'Got it',
+                      'Logout error',
                       style: TextStyles.font13BlueSemiBold ,
                     ),
                   ),

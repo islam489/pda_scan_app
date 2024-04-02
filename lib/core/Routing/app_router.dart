@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pda_scan_app/core/Routing/routes.dart';
+import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_cubit.dart';
 import 'package:pda_scan_app/features/Receipt/presentation/screen/receipt_screen.dart';
 import 'package:pda_scan_app/features/Splash/splash_screen.dart';
 import 'package:pda_scan_app/features/onBoarding/onboarding_view.dart';
 
 import '../../features/Authintication/Login/Presentaion/screen/loginScreen.dart';
 import '../../features/Authintication/Login/logic/cubit/login_cubit.dart';
+import '../../features/Authintication/Logout/logic/cubit/logout_cubit.dart';
+import '../../features/Authintication/Logout/presentation/screen/logout_screen.dart';
 import '../../features/Home/presentation/screen/home_screen.dart';
 import '../DI/dependency_injection.dart';
 
@@ -37,6 +40,15 @@ class AppRouter {
           ),
         );
 
+      case Routes.logoutScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<LogoutCubit>(),
+            child: const LogoutScreen(),
+          ),
+        );
+
+
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
@@ -45,7 +57,10 @@ class AppRouter {
 
       case Routes.receiptScreen:
         return MaterialPageRoute(
-          builder: (_) => const ReceiptScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<GetPurchaseOrderDetailsCubit>(),
+            child: const ReceiptScreen(),
+          ),
         );
 
       default:

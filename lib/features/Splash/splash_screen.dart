@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:pda_scan_app/core/Helpers/cache_helper.dart';
+import 'package:pda_scan_app/core/Networking/api_constants.dart';
+import 'package:pda_scan_app/features/Home/presentation/screen/home_screen.dart';
 import 'package:pda_scan_app/features/onBoarding/onboarding_view.dart';
 
 class Splash_Screen extends StatefulWidget {
@@ -13,19 +16,29 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   @override
   void initState() {
     super.initState();
+    getTokenValue();
     SchedulerBinding.instance!.addPostFrameCallback((timeStamp) async {
       Future.delayed(
         const Duration(seconds: 3),
             () async {
 
-          Navigator.pushReplacement(
+        Navigator.pushReplacement(
               context,
               new MaterialPageRoute(
-                  builder: (BuildContext context) =>  OnboardingView()));
+                  builder: (BuildContext context) => ApiConstants.tokenvalue.isNotEmpty
+                      ?
+                  HomeScreen()
+                      :
+                  OnboardingView()));
 
         },
       );
     });
+  }
+  getTokenValue()async{
+    ApiConstants.tokenvalue =  (await CacheHelper.getString(ApiConstants.token))!;
+    print("ApiConstants.tokenvalue");
+    print(ApiConstants.tokenvalue);
   }
   @override
   Widget build(BuildContext context) {

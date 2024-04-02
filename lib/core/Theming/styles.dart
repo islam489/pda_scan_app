@@ -52,6 +52,7 @@ class TextStyles {
     color: Colors.white,
   );
 
+
   static TextStyle font13GrayRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,

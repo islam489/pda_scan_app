@@ -21,6 +21,8 @@ class PdaApp extends StatelessWidget {
         ),
         onGenerateRoute: appRouter.generateRoute,
         debugShowCheckedModeBanner: false,
+
+
         initialRoute: Routes.splashScreen,
 
       ),

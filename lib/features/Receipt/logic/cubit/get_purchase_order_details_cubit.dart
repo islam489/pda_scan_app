@@ -6,6 +6,7 @@ import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_det
 class GetPurchaseOrderDetailsCubit extends Cubit<GetPurchaseOrderDetailsState> {
   final GetPurchaseOrderDetailsRepo _getPurchaseOrderDetailsRepo;
   TextEditingController poNumberController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   GetPurchaseOrderDetailsCubit(this._getPurchaseOrderDetailsRepo) : super(const GetPurchaseOrderDetailsState.initial());
 

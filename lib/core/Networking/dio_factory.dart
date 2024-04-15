@@ -24,8 +24,8 @@ class DioFactory {
     dio?.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          if (token.isNotEmpty) {
-            options.headers["Authorization"] = "Bearer $token";
+          if (ApiConstants.tokenvalue.isNotEmpty) {
+            options.headers["Authorization"] = "Bearer ${ApiConstants.tokenvalue}";
           }
 // options.headers["accept-language"] = "Bearer $token";
 

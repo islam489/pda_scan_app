@@ -1,6 +1,6 @@
 class ApiConstants {
   static String token = "token";
-  static String tokenvalue= "" ;
+  static String  tokenvalue= "" ;
   // ---------------BaseUrl---------------//
   static const String apiBaseUrl = 'http://78.89.176.218:8000/api/';
 

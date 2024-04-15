@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pda_scan_app/features/Authintication/Login/Presentaion/screen/loginScreen.dart';
 import 'package:pda_scan_app/features/Home/presentation/screen/home_screen.dart';
+import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -10,6 +11,7 @@ import '../../core/Helpers/cache_helper.dart';
 import '../../core/Networking/api_constants.dart';
 import '../../core/Theming/color.dart';
 import '../Authintication/Login/logic/cubit/login_cubit.dart';
+import '../Receipt/presentation/screen/receipt_screen.dart';
 import 'onboarding_items.dart';
 
 class OnboardingView extends StatefulWidget {

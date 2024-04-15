@@ -10,12 +10,13 @@ class LogoutCubit extends Cubit<LogoutState> {
 
   LogoutCubit(this._logoutRepo) : super(const LogoutState.initial());
 
-  void emitLoginStates() async {
+   emitLogoutStates() async {
     emit(const LogoutState.loading());
     final  response = await _logoutRepo.logout();
     response.when(
       success: (logoutResponse) async {
-        CacheHelper.sharedPreferences.remove(ApiConstants.token);
+       await CacheHelper.deleteValue(ApiConstants.token);
+       ApiConstants.tokenvalue = '';
         emit(LogoutState.success(logoutResponse));
       },
       failure: (error) {

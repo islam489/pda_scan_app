@@ -20,8 +20,12 @@ class LogoutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 40),
+                  child: Center(child: Image.asset('assets/images/scan3.PNG')),
+                ),
                 Text(
-                  'Welcome Back',
+                  'Are You Logging Out ?',
                   style: TextStyles.font24BlueBold,
                 ),
                 verticalSpace(8),
@@ -36,9 +40,11 @@ class LogoutScreen extends StatelessWidget {
                     AppTextButton(
                       buttonText: "Logout",
                       textStyle: TextStyles.font16WhiteSemiBold,
-                      onPressed: () {
-                        DoLogout(context);
-                      },
+                      onPressed: () async {
+                        print("TTTTTTTTTTTTTT");
+                        await DoLogout(context);
+                        print("xxxxxxxxxxxxxx");
+                        },
                     ),
                     const LogoutBlocListener(),
                   ],
@@ -51,8 +57,8 @@ class LogoutScreen extends StatelessWidget {
     );
   }
 
-  void DoLogout(BuildContext context) {
-      context.read<LogoutCubit>().emitLoginStates();
+   DoLogout(BuildContext context) async{
+      await context.read<LogoutCubit>().emitLogoutStates();
     }
 
 

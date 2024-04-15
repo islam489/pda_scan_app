@@ -6,9 +6,9 @@ part 'get_purchase_order_details_response.g.dart';
 class GetPurchaseOrderDetailsResponse {
   int? whOrderId;
   String? poNumber;
-  int? supplier_name;
+  String? supplier_name;
   String? supplier_nameEn;
-  OrderItems? orderItems;
+  List<OrderItems>? orderItems;
   String? message;
   int? status;
 
@@ -25,7 +25,7 @@ class OrderItems {
   int? wh_OrderDtl_id;
   int? wh_OrderDtl_lineno;
   int? wh_Item_id;
-  int? wh_OrderDtl_Qty;
+  double? wh_OrderDtl_Qty;
   String? wh_units_name_ar;
   String? wh_units_name_en;
   String? wh_item_barcodes_code;
@@ -35,7 +35,7 @@ class OrderItems {
   String? supplier_nameEn;
   int? wh_item_units_Factor;
   int? wh_units_id;
-  bool? has_serial;
+  String? has_serial;
   OrderItems({this.wh_Order_id, this.wh_OrderDtl_id, this.wh_OrderDtl_lineno, this.wh_Item_id,
   this.wh_OrderDtl_Qty, this.wh_units_name_ar, this.wh_units_name_en,
   this.wh_item_barcodes_code, this.wh_Item_name_ar, this.wh_Item_name_en, this.supplier_name,

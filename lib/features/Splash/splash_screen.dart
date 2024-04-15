@@ -36,8 +36,8 @@ class _Splash_ScreenState extends State<Splash_Screen> {
     });
   }
   getTokenValue()async{
-    ApiConstants.tokenvalue =  (await CacheHelper.getString(ApiConstants.token))!;
-    print("ApiConstants.tokenvalue");
+    ApiConstants.tokenvalue =  (await CacheHelper.getString(ApiConstants.token ))?? "";
+    print("ApiConstants.tokenvalue1");
     print(ApiConstants.tokenvalue);
   }
   @override

@@ -32,6 +32,11 @@ class CacheHelper {
     return await pref.setString(key, value);
   }
 
+  static deleteValue(String key) async {
+    final pref = await SharedPreferences.getInstance();
+    return pref.remove(key);
+  }
+
   Future<bool> removeData({required String key}) async {
     return await sharedPreferences.remove(key);
   }

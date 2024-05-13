@@ -76,15 +76,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetPurchaseOrderDetailsResponse> getPurchaseOrderDetails(
+  Future<OrderResponse> getPurchaseOrderDetails(
       GetPurchaseOrderDetailsBody getPurchaseOrderDetailsBody) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getPurchaseOrderDetailsBody.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetPurchaseOrderDetailsResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<OrderResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -100,7 +100,35 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetPurchaseOrderDetailsResponse.fromJson(_result.data!);
+    final value = OrderResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ConfirmReceiptOrderResponse> confirmReceiptOrder(
+      List<OrderResponse> orderResponse) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = orderResponse.map((e) => e.toJson()).toList();
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ConfirmReceiptOrderResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'receipt/confirmReceiptOrder',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ConfirmReceiptOrderResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -1,6 +1,7 @@
 class ApiConstants {
   static String token = "token";
-  static String  tokenvalue= "" ;
+  static String tokenvalue = "";
+
   // ---------------BaseUrl---------------//
   static const String apiBaseUrl = 'http://78.89.176.218:8000/api/';
 
@@ -9,9 +10,10 @@ class ApiConstants {
   static const String logout = 'auth/logout';
 
   //-----------------Receipt--------------//
-  static const String getPurchaseOrderDetails = 'receipt/getPurchaseOrderDetails';
+  static const String getPurchaseOrderDetails =
+      'receipt/getPurchaseOrderDetails';
+  static const String confirmReceiptOrder = 'receipt/confirmReceiptOrder';
 }
-
 
 class ApiErrors {
   static const String badRequestError = "badRequestError";

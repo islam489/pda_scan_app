@@ -1,6 +1,7 @@
-
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pda_scan_app/features/ConfirmReceiptOrder/data/repos/confirm_receipt_order_repo.dart';
+import 'package:pda_scan_app/features/ConfirmReceiptOrder/logic/cubit/confirm_receipt_order_cubit.dart';
 import 'package:pda_scan_app/features/Receipt/data/repos/get_purchase_order_details_repo.dart';
 import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_cubit.dart';
 
@@ -10,8 +11,6 @@ import '../../features/Authintication/Logout/data/repos/logout_repo.dart';
 import '../../features/Authintication/Logout/logic/cubit/logout_cubit.dart';
 import '../Networking/api_service.dart';
 import '../Networking/dio_factory.dart';
-
-
 
 final getIt = GetIt.instance;
 
@@ -26,12 +25,19 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
-
   // Logout
   getIt.registerLazySingleton<LogoutRepo>(() => LogoutRepo(getIt()));
   getIt.registerFactory<LogoutCubit>(() => LogoutCubit(getIt()));
 
   // GetPurchaseOrderDetails
-  getIt.registerLazySingleton<GetPurchaseOrderDetailsRepo>(() => GetPurchaseOrderDetailsRepo(getIt()));
-  getIt.registerFactory<GetPurchaseOrderDetailsCubit>(() => GetPurchaseOrderDetailsCubit(getIt()));
+  getIt.registerLazySingleton<GetPurchaseOrderDetailsRepo>(
+      () => GetPurchaseOrderDetailsRepo(getIt()));
+  getIt.registerFactory<GetPurchaseOrderDetailsCubit>(
+      () => GetPurchaseOrderDetailsCubit(getIt()));
+
+  // Confirm_receipt_order
+  getIt.registerLazySingleton<ConfirmReceiptOrderRepo>(
+      () => ConfirmReceiptOrderRepo(getIt()));
+  getIt.registerFactory<ConfirmReceiptOrderCubit>(
+      () => ConfirmReceiptOrderCubit(getIt()));
 }

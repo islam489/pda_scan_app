@@ -4,13 +4,14 @@ import 'package:pda_scan_app/features/Receipt/data/models/get_purchase-order-det
 import 'package:pda_scan_app/features/Receipt/data/repos/get_purchase_order_details_repo.dart';
 import 'package:pda_scan_app/features/Receipt/logic/cubit/get_purchase_order_details_state.dart';
 
-import '../../data/models/get_purchase_order_details_response.dart';
+import '../../data/models/get_purchase_order_hive_model.dart';
+
 class GetPurchaseOrderDetailsCubit extends Cubit<GetPurchaseOrderDetailsState> {
   final GetPurchaseOrderDetailsRepo _getPurchaseOrderDetailsRepo;
   TextEditingController poNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  GetPurchaseOrderDetailsResponse? result;
-  List<OrderItems>? orderItems;
+  OrderResponse? result;
+  List<OrderItem>? orderItems;
 
   GetPurchaseOrderDetailsCubit(this._getPurchaseOrderDetailsRepo) : super(const GetPurchaseOrderDetailsState.initial());
 
@@ -21,14 +22,15 @@ class GetPurchaseOrderDetailsCubit extends Cubit<GetPurchaseOrderDetailsState> {
           poNumber:poNumberController.text,
         )
     );
+    print("orderItems!.length11111");
     response.when(
-      success: (getPurchaseOrderDetailsResponse) {
-        result = getPurchaseOrderDetailsResponse;
+      success: (orderResponse) {
+        result = orderResponse;
         orderItems?.clear();
-        orderItems = getPurchaseOrderDetailsResponse.orderItems!;
+        orderItems = orderResponse.orderItems!;
         print("orderItems!.length");
         print(orderItems!.length);
-        emit(GetPurchaseOrderDetailsState.success(getPurchaseOrderDetailsResponse));
+        emit(GetPurchaseOrderDetailsState.success(orderResponse));
         },
       failure: (error) {
         emit(GetPurchaseOrderDetailsState.error(error: error.apiErrorModel.message ?? ''));

@@ -1,6 +1,7 @@
 
 import 'package:pda_scan_app/features/Receipt/data/models/get_purchase-order-details-request-body.dart';
 import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_details_response.dart';
+import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_hive_model.dart';
 import '../../../../core/Networking/api_error_handler.dart';
 import '../../../../core/Networking/api_result.dart';
 import '../../../../core/Networking/api_service.dart';
@@ -9,7 +10,7 @@ class GetPurchaseOrderDetailsRepo {
 
   GetPurchaseOrderDetailsRepo (this._apiService);
 
-  Future<ApiResult<GetPurchaseOrderDetailsResponse>> getPurchaseOrderDetails(
+  Future<ApiResult<OrderResponse>> getPurchaseOrderDetails(
       GetPurchaseOrderDetailsBody getPurchaseOrderDetailsBody) async {
     try {
       final response = await _apiService.getPurchaseOrderDetails(getPurchaseOrderDetailsBody);

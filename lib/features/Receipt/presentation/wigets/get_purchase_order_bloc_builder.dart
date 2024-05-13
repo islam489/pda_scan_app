@@ -58,7 +58,7 @@ class _GetPurchaseOrderBlocBuilderState extends State<GetPurchaseOrderBlocBuilde
            ],
            rows: (context.read<GetPurchaseOrderDetailsCubit>().orderItems ?? []).map((e) => DataRow(
              cells: [
-               DataCell(Text((e.wh_units_id ?? 0).toString(),
+               DataCell(Text((e.whUnitsId ?? 0).toString(),
                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17))),
                const DataCell(Text('product1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17))),
                const DataCell(Text('10', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17))),

@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:pda_scan_app/features/Authintication/Logout/data/models/logout_response.dart';
 import 'package:pda_scan_app/features/Receipt/data/models/get_purchase-order-details-request-body.dart';
-import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_details_response.dart';
+import 'package:pda_scan_app/features/Receipt/data/models/get_purchase_order_hive_model.dart';
 import 'package:retrofit/http.dart';
 
 import '../../features/Authintication/Login/data/models/login_request_body.dart';
 import '../../features/Authintication/Login/data/models/login_response.dart';
+import '../../features/ConfirmReceiptOrder/data/models/confirm_receipt_order_response.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -16,10 +17,10 @@ abstract class ApiService {
 
 // --------------------------------- Auth --------------------------------- //
 
- @POST(ApiConstants.login)
+  @POST(ApiConstants.login)
   Future<LoginResponse> login(
-      @Body() LoginRequestBody loginRequestBody,
-      );
+    @Body() LoginRequestBody loginRequestBody,
+  );
 
   @POST(ApiConstants.logout)
   Future<LogoutResponse> logout();
@@ -27,9 +28,14 @@ abstract class ApiService {
 // --------------------------------- Receipt --------------------------------- //
 
   @POST(ApiConstants.getPurchaseOrderDetails)
-  Future<GetPurchaseOrderDetailsResponse> getPurchaseOrderDetails(
-      @Body() GetPurchaseOrderDetailsBody getPurchaseOrderDetailsBody,
-      );
+  Future<OrderResponse> getPurchaseOrderDetails(
+    @Body() GetPurchaseOrderDetailsBody getPurchaseOrderDetailsBody,
+  );
 
+  //______________________________confirm___________________________________//
+
+  @POST(ApiConstants.confirmReceiptOrder)
+  Future<ConfirmReceiptOrderResponse> confirmReceiptOrder(
+    @Body() List<OrderResponse> orderResponse,
+  );
 }
-
